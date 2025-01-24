@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThriveFeed Prototype</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6dd5fa, #ffffff);
+            color: #333;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .feed-item {
+            background: white;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .feed-item:hover {
+            transform: scale(1.02);
+        }
+        .feed-item i {
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+        .chat-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .chat-log {
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .chat-log p {
+            margin: 5px 0;
+        }
+        .chat-input {
+            display: flex;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-leaf"></i> ThriveFeed</h1>
+    </header>
+    <div class="container">
+        <h2>Daily Wellness Feed</h2>
+        <div class="feed-item"><i class="fas fa-walking"></i> Tip 1: Take a 5-minute walk to refresh your mind.</div>
+        <div class="feed-item"><i class="fas fa-tint"></i> Tip 2: Stay hydrated—drink at least 8 cups of water daily.</div>
+        <div class="feed-item"><i class="fas fa-spa"></i> Tip 3: Try deep breathing exercises for relaxation.</div>
+
+        <div class="chat-container">
+            <h2>AI Chat</h2>
+            <div class="chat-log" id="chatLog">
+                <p><strong>AI:</strong> Welcome to ThriveFeed! Ask me anything.</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const chatLog = document.getElementById("chatLog");
+
+            if (userInput.value.trim() !== "") {
+                // Display user's message
+                const userMessage = document.createElement("p");
+                userMessage.innerHTML = `<strong>You:</strong> ${userInput.value}`;
+                chatLog.appendChild(userMessage);
+
+                // Placeholder AI response
+                const aiResponse = document.createElement("p");
+                aiResponse.innerHTML = `<strong>AI:</strong> That's a great question! Let me help with that.`;
+                chatLog.appendChild(aiResponse);
+
+                // Clear input field
+                userInput.value = "";
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
